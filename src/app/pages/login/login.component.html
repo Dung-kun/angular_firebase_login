@@ -9,7 +9,7 @@
         </div>
       </div>
     </div>
-  
+
     <div class="container m-common">
       <div class="login-content">
         <div class="login-title">Đăng nhập</div>
@@ -17,7 +17,7 @@
           Vui lòng nhập chi tiết tài khoản bên dưới.
         </div>
         <form autocomplete="off" (ngSubmit)="ngxOnSubmit()">
-          <ng-container formGroupName="formBody">
+          <ng-container>
             <div class="input-margin">
               <label class="form-label">Email</label>
               <input autocomplete="new-password" class="form-control" type="text" placeholder="Địa chỉ Email">
@@ -27,7 +27,7 @@
             <div class="input-margin">
               <label class="form-label">Mật khẩu</label>
               <div class="d-flex">
-                <input class="form-control" autocomplete="new-password" [type]="typePassword" placeholder="Mật khẩu" formControlName="password"
+                <input class="form-control" autocomplete="new-password" [type]="typePassword" placeholder="Mật khẩu"
                 >
                 <button type="button" class="d-flex" style="align-items: center;padding: 0;border: none; background-color: transparent;"
                 (click)="changeTypePassword()"

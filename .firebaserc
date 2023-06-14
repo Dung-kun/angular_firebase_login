@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "prime-works-315315": {
+      "hosting": {
+        "angular_firebase_login": [
+          "prime-works-315315"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "prime-works-315315"
+  }
+}

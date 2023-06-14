@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { combineLatest, map } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable} from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { Firestore, collectionData, collection, doc } from '@angular/fire/firestore';
+interface TaskModel {
+  list_member: String[],
+  description: String,
+  id_project: String
+}
 
 @Component({
   selector: 'app-login',
@@ -14,48 +15,62 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent
- implements OnInit
+ implements OnInit, OnDestroy
 {
   public typePassword: string;
   public formGroup: FormGroup;
-
-  private userId: String = "";
+  public sub: any;
+  public collection: Observable<TaskModel[]>;
+  private userId$: BehaviorSubject<String>;
   constructor(
     private fb: FormBuilder,
     private readonly route: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    private fireStore: Firestore
   ) {
 
-    this.typePassword = 'password';
+    const cc = collection(fireStore, 'user');
+    this.collection = collectionData(cc) as Observable<TaskModel[]>;
 
+    console.log(this.collection);
+    this.typePassword = 'password';
+    this.userId$ = new BehaviorSubject<String>("");
     this.formGroup = this.fb.group({
       email: new FormControl(""),
       password: new FormControl(""),
       rePassword: new FormControl("")
     });
   }
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 
   ngOnInit(): void {
 
+
     this.scaffoldFormControl();
-    const onInit$ = combineLatest([this.appRouteParams()]).pipe(
-      map(value => {
-        return value;
-      }),
-    );
-    
-    const onInit = onInit$.subscribe((value) => {
-      this.userId = value.toString();
+
+    this.collection.subscribe((value) => {
+      console.log(value);
     });
+    // const onInit$ = combineLatest([this.appRouteParams()]).pipe(
+    //   map((value: Params) => {
+    //     let userId = value["id"] != null ? value["id"] : "";
+    //     return userId;
+    //   }),
+    // );
+
+    // this.sub = onInit$.subscribe((value) => {
+    //   this.userId$.next(value);
+    // });
 
 
   }
+
 
   ngxOnSubmit(): void {
 
 
-  }
-  prepareFormBodyControls() {
   }
 
   scaffoldFormControl() {
