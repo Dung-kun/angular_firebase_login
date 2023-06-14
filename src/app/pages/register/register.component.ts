@@ -32,6 +32,7 @@ export class RegisterComponent
   }
 
   ngOnInit(): void {
+    this.formBody = this.scaffoldFormControl();
     const onInit$ = combineLatest([this.appRouteParams()]);
 
     const onInit = onInit$.subscribe((value) => {
@@ -39,31 +40,13 @@ export class RegisterComponent
 
   }
 
-  prepareFormBodyControls(): FormGroup {
-    const bodyControl = this.scaffoldFormControl();
-    const formBody = this.fb.group(bodyControl);
-
-    return formBody;
-  }
 
   scaffoldFormControl() {
-    const registerForm = {
-      id: new FormControl(''),
-      email: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-      ]),
-      fullname: this.fb.control('', [Validators.required]),
-      dob: this.fb.control('', [Validators.required]),
-      password: this.fb.control('', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(25),
-      ]),
-      rePassword: this.fb.control('', [Validators.required]),
-    };
-
-    return registerForm;
+    return this.fb.group({
+      email: new FormControl(""),
+      password: new FormControl(""),
+      rePassword: new FormControl("")
+    });
   }
 
   ngxOnSubmit() {

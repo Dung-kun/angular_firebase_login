@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { combineLatest, map, of, switchMap, tap } from 'rxjs';
+import { combineLatest, map } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -19,7 +19,7 @@ export class LoginComponent
   public typePassword: string;
   public formGroup: FormGroup;
 
-
+  private userId: String = "";
   constructor(
     private fb: FormBuilder,
     private readonly route: ActivatedRoute,
@@ -38,15 +38,22 @@ export class LoginComponent
   ngOnInit(): void {
 
     this.scaffoldFormControl();
-    const onInit$ = combineLatest([this.appRouteParams()]);
-
+    const onInit$ = combineLatest([this.appRouteParams()]).pipe(
+      map(value => {
+        return value;
+      }),
+    );
+    
     const onInit = onInit$.subscribe((value) => {
+      this.userId = value.toString();
     });
 
 
   }
 
   ngxOnSubmit(): void {
+
+
   }
   prepareFormBodyControls() {
   }
@@ -78,3 +85,4 @@ export class LoginComponent
     }
   }
 }
+
