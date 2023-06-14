@@ -1,0 +1,88 @@
+.name__app {
+    font-family: "Josefin Sans";
+    color: #0D0E43;
+    font-size: 34px;
+    line-height: 40px;
+    font-weight: bold;
+    margin-right: 60px;
+    margin-bottom: 30px;
+  }
+  footer {
+    background-color: #fbeeee;
+  }
+  .footer__app {
+    padding: 80px 40px;
+  }
+  
+  .button__search {
+    color: white;
+    background-color: hsl(334, 96%, 58%);
+  }
+  
+  .input-group {
+    width: 60%;
+    margin-bottom: 30px;
+  }
+  
+  
+  .title__footer {
+    font-family: 'Josefin Sans';
+    font-size: 22px;
+    line-height: 26px;
+    color:   #000000;
+  }
+  
+  .title__child__footer {
+    color:#8A8FB9;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+      .style-header-text {
+        font-family: 'Lato';
+        color: #8A8FB9;
+        text-decoration: none;
+      }
+      .style-header-text:hover {
+        color:hsl(334, 96%, 58%);
+        text-decoration: underline;
+      }
+  }
+  
+  .footer-bottom {
+    padding-top: 10px;
+    padding-bottom:10px;
+    background-color: #e7c8c8;
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      .flex-50 {
+        flex: 0 0 50%;
+        width: 50%;
+      }
+  
+      .copy-right {
+        color:#393a41;
+      }
+  
+      .icon-contact {
+        display: flex;
+        justify-content: center;
+  
+        a {
+          border-radius: 50%;
+          text-decoration: none;
+          margin-left: 10px;
+          margin-right: 10px;
+          color: white;
+           i {
+            padding: 0;
+            margin: 0;
+           }
+        }
+      }
+    }
+  }

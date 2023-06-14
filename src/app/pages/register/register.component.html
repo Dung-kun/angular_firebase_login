@@ -1,0 +1,73 @@
+<div class="login-container">
+    <div class="title-container">
+      <div class="container">
+        <div class="title-text">
+          Đăng Ký
+        </div>
+        <div class="title-route">
+          Trang chủ. <span>Đăng ký</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="container m-common">
+      <div class="login-content">
+        <div class="login-title">Đăng ký</div>
+        <div class="login-sub-title">
+          Vui lòng nhập chi tiết tài khoản bên dưới.
+        </div>
+        <form (ngSubmit)="ngxOnSubmit()">
+          <ng-container formGroupName="formBody">
+  
+            <div class="input-margin">
+              <label class="form-label">Email</label>
+              <input class="form-control" type="text" placeholder="Địa chỉ Email" formControlName="email">
+              <div class="invalid-feedback" >
+              </div>
+            </div>
+  
+  
+            <div class="input-margin">
+              <label class="form-label">Mật khẩu</label>
+              <div class="d-flex">
+                <input class="form-control" autocomplete="new-password" [type]="typePassword" placeholder="Mật khẩu"
+                  formControlName="password">
+                <button type="button" class="d-flex"
+                  style="align-items: center;padding: 0;border: none; background-color: transparent;"
+                  (click)="changeTypePassword(this.typePassword, true)">
+                  <i style="cursor: pointer;width: 16px;height: 16px;"
+                    [ngClass]="typePassword != 'password'? 'ai-eye-slashed': 'ai-eye-open'"></i>
+                </button>
+              </div>
+              <div class="invalid-feedback">
+              </div>
+            </div>
+  
+  
+            <div class="input-margin">
+              <label class="form-label">Xác nhận lại mật khẩu</label>
+              <div class="d-flex">
+                <input class="form-control" autocomplete="new-password" [type]="typeRePassword" placeholder="Xác nhận lại mật khẩu"
+                  formControlName="rePassword">
+                <button type="button" class="d-flex"
+                  style="align-items: center;padding: 0;border: none; background-color: transparent;"
+                  (click)="changeTypePassword(this.typeRePassword, false)">
+                  <i style="cursor: pointer;width: 16px;height: 16px;"
+                    [ngClass]="typeRePassword != 'password'? 'ai-eye-slashed': 'ai-eye-open'"></i>
+                </button>
+              </div>
+            </div>
+  
+  
+            <button type="submit" class="button-submit form-control">Đăng
+              ký</button>
+  
+            <div class="no-account">
+              Bạn đã có tài khoản? <a routerLink="/login">Đăng nhập ngay</a>
+            </div>
+  
+          </ng-container>
+        </form>
+      </div>
+    </div>
+  </div>

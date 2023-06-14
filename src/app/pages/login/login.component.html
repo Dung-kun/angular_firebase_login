@@ -1,0 +1,54 @@
+<div class="login-container">
+    <div class="title-container">
+      <div class="container">
+        <div class="title-text">
+          Đăng nhập
+        </div>
+        <div class="title-route">
+          Trang chủ. <span>Đăng nhập</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="container m-common">
+      <div class="login-content">
+        <div class="login-title">Đăng nhập</div>
+        <div class="login-sub-title">
+          Vui lòng nhập chi tiết tài khoản bên dưới.
+        </div>
+        <form autocomplete="off" (ngSubmit)="ngxOnSubmit()">
+          <ng-container formGroupName="formBody">
+            <div class="input-margin">
+              <label class="form-label">Email</label>
+              <input autocomplete="new-password" class="form-control" type="text" placeholder="Địa chỉ Email">
+              <div class="invalid-feedback">
+              </div>
+            </div>
+            <div class="input-margin">
+              <label class="form-label">Mật khẩu</label>
+              <div class="d-flex">
+                <input class="form-control" autocomplete="new-password" [type]="typePassword" placeholder="Mật khẩu" formControlName="password"
+                >
+                <button type="button" class="d-flex" style="align-items: center;padding: 0;border: none; background-color: transparent;"
+                (click)="changeTypePassword()"
+                >
+                  <i style="cursor: pointer;width: 16px;height: 16px;"
+                  [ngClass]="typePassword != 'password'? 'ai-eye-slashed': 'ai-eye-open'"
+                  ></i>
+                </button>
+              </div>
+            </div>
+          </ng-container>
+          <div class="forgot-password">
+            <a routerLink="/register">
+              Quên mật khẩu?
+            </a>
+          </div>
+          <button type="submit" class="button-submit form-control">Đăng nhập</button>
+          <div class="no-account">
+            Bạn chưa có tài khoản? <a routerLink="/register">Tạo tài khoản</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,100 @@
+
+.login-content {
+    max-width:50%;
+    overflow: hidden;
+    margin: 0 auto;
+    text-align: center;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 25px 10px #f5f5fc;
+    padding: 30px 0;
+  
+    .login-title {
+      font-size: 30px;
+      line-height: 38px;
+      font-weight: bold;
+      color: #000000;
+    }
+  
+    .login-sub-title {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 20px;
+      color: #9096B2;
+      margin-bottom: 20px;
+    }
+  
+    form {
+      text-align: left;
+      padding: 10px 60px;
+      .input-margin {
+        margin-bottom: 20px;
+      }
+  
+      .forgot-password {
+        text-decoration: none;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 17px;
+        line-height: 20px;
+        color: #9096B2;
+      }
+  
+      .button-submit {
+        margin: 10px 0;
+        background: #FB2E86;
+        border-radius: 3px;
+        border: none;
+        color: #FFFFFF;
+  
+      }
+  
+      .no-account {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 17px;
+        line-height: 20px;
+        text-align: center;
+        color: #9096B2;
+      }
+    }
+  
+    a:hover {
+      color: #FB2E86;
+      text-decoration: underline;
+    }
+  }
+  
+  
+  .ml--50 {
+    margin-left: -50px;
+  }
+  
+  .ml--30 {
+    margin-left: -30px;
+  }
+  
+  
+  @media screen and (max-width: 1200px) {
+    .login-content {
+      max-width: 80%;
+      padding: 0;
+    }
+  }
+  
+  .d-block {
+    display: block;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .login-content {
+      max-width: 90%;
+      padding: 0;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .login-content {
+      max-width: 100%;
+      padding: 0;
+    }
+  }
