@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    background-position: center;
+    max-height: 300px;
+    max-width: 300px;
+}

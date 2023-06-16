@@ -5,10 +5,10 @@ import { LayoutComponent } from './layout.component';
 const routes: Routes = [{
   path: '', component: LayoutComponent,
   children: [
-    // {
-    //   path: 'home',
-    //   loadChildren: () => import('./../../pages/home/home.module').then(m => m.HomeModule)
-    // },
+    {
+      path: 'go-to-project',
+      loadChildren: () => import('./../pages/go-to-project/go-to-project.module').then(m => m.GoToModule)
+    },
     {
       path: 'login',
       loadChildren: () => import("../pages/login/login.module").then(m=>m.LoginModule)
@@ -19,8 +19,8 @@ const routes: Routes = [{
       loadChildren: () => import('../pages/register/register.module').then(m=>m.RegisterModule)
     },
 
-    { path: '',   redirectTo: '/login', pathMatch: 'full' },
-    { path: '**',   redirectTo: '/register', pathMatch: 'full' }
+    { path: '',   redirectTo: 'login', pathMatch: 'full' },
+    { path: '**',   redirectTo: 'login', pathMatch: 'full' }
 
   ]
 }];

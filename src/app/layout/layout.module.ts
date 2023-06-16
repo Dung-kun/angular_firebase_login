@@ -14,9 +14,9 @@ import { HeaderModule } from './header/header.module';
   ],
   imports: [
     CommonModule,
+    LayoutRoutingModule,
     FooterModule,
     HeaderModule,
-    LayoutRoutingModule,
   ],
   exports: [LayoutComponent]
 })
