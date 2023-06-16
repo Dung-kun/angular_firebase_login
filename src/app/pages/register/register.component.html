@@ -1,73 +1,91 @@
 <div class="login-container">
-    <div class="title-container">
-      <div class="container">
-        <div class="title-text">
-          Đăng Ký
-        </div>
-        <div class="title-route">
-          Trang chủ. <span>Đăng ký</span>
-        </div>
+  <div class="title-container">
+    <div class="container">
+      <div class="title-text">
+        Đăng Ký
       </div>
-    </div>
-  
-    <div class="container m-common">
-      <div class="login-content">
-        <div class="login-title">Đăng ký</div>
-        <div class="login-sub-title">
-          Vui lòng nhập chi tiết tài khoản bên dưới.
-        </div>
-        <form (ngSubmit)="ngxOnSubmit()">
-          <ng-container formGroupName="formBody">
-  
-            <div class="input-margin">
-              <label class="form-label">Email</label>
-              <input class="form-control" type="text" placeholder="Địa chỉ Email" formControlName="email">
-              <div class="invalid-feedback" >
-              </div>
-            </div>
-  
-  
-            <div class="input-margin">
-              <label class="form-label">Mật khẩu</label>
-              <div class="d-flex">
-                <input class="form-control" autocomplete="new-password" [type]="typePassword" placeholder="Mật khẩu"
-                  formControlName="password">
-                <button type="button" class="d-flex"
-                  style="align-items: center;padding: 0;border: none; background-color: transparent;"
-                  (click)="changeTypePassword(this.typePassword, true)">
-                  <i style="cursor: pointer;width: 16px;height: 16px;"
-                    [ngClass]="typePassword != 'password'? 'ai-eye-slashed': 'ai-eye-open'"></i>
-                </button>
-              </div>
-              <div class="invalid-feedback">
-              </div>
-            </div>
-  
-  
-            <div class="input-margin">
-              <label class="form-label">Xác nhận lại mật khẩu</label>
-              <div class="d-flex">
-                <input class="form-control" autocomplete="new-password" [type]="typeRePassword" placeholder="Xác nhận lại mật khẩu"
-                  formControlName="rePassword">
-                <button type="button" class="d-flex"
-                  style="align-items: center;padding: 0;border: none; background-color: transparent;"
-                  (click)="changeTypePassword(this.typeRePassword, false)">
-                  <i style="cursor: pointer;width: 16px;height: 16px;"
-                    [ngClass]="typeRePassword != 'password'? 'ai-eye-slashed': 'ai-eye-open'"></i>
-                </button>
-              </div>
-            </div>
-  
-  
-            <button type="submit" class="button-submit form-control">Đăng
-              ký</button>
-  
-            <div class="no-account">
-              Bạn đã có tài khoản? <a routerLink="/login">Đăng nhập ngay</a>
-            </div>
-  
-          </ng-container>
-        </form>
+      <div class="title-route">
+        Trang chủ. <span>Đăng ký</span>
       </div>
     </div>
   </div>
+
+  <div class="container m-common">
+    <div class="login-content">
+      <div class="login-title">Đăng ký</div>
+      <div class="login-sub-title">
+        Vui lòng nhập chi tiết tài khoản bên dưới.
+      </div>
+      <form (ngSubmit)="ngxOnSubmit()">
+        <ng-container [formGroup]="formBody">
+
+          <div class="input-margin">
+            <label class="form-label">Email</label>
+            <input class="form-control" type="text" placeholder="Địa chỉ Email" formControlName="email"
+              [ngClass]="validation.isEmailValid ? 'is-valid': (validation.isEmailInvalid? 'is-invalid' : '')">
+            <div class="invalid-feedback" [style.display]="validation.isEmailInvalid ? 'block': 'none'">
+              <span *ngIf="validation.isEmail?.errors?.['required']">Vui lòng nhập Email</span>
+              <span *ngIf="validation.isEmail?.errors?.['pattern']">Nhập sai định dạng email</span>
+            </div>
+          </div>
+
+          <div class="input-margin">
+            <label class="form-label">Tên hiển thị</label>
+            <input class="form-control" type="text" placeholder="Địa chỉ Email" formControlName="displayName"
+              [ngClass]="validation.isDisplayNameValid ? 'is-valid': (validation.isDisplayNameInvalid? 'is-invalid' : '')">
+            <div class="invalid-feedback" [style.display]="validation.isDisplayNameInvalid ? 'block': 'none'">
+              <span *ngIf="validation.isDisplayName?.errors?.['required']">Vui lòng nhập tên hiển thị của bạn</span>
+            </div>
+          </div>
+
+
+          <div class="input-margin">
+            <label class="form-label">Mật khẩu</label>
+            <div class="d-flex">
+              <input class="form-control" autocomplete="new-password" [type]="typePassword" placeholder="Mật khẩu"
+                formControlName="password"
+                [ngClass]="validation.isPasswordValid ? 'is-valid': (validation.isPasswordInvalid? 'is-invalid' : '')">
+              <button type="button" class="d-flex"
+                style="align-items: center;padding: 0;border: none; background-color: transparent;"
+                [ngClass]="validation.isPasswordValid || validation.isPasswordInvalid ? 'ml--50' : 'ml--30'"
+                (click)="changeTypePassword(this.typePassword, true)">
+                <i style="cursor: pointer;width: 16px;height: 16px;"
+                  [ngClass]="typePassword != 'password'? 'ai-eye-slashed': 'ai-eye-open'"></i>
+              </button>
+            </div>
+            <div class="invalid-feedback" [style.display]="validation.isPasswordInvalid ? 'block': 'none'">
+              <span *ngIf="validation.isPassword?.errors?.['required']">Vui lòng nhập mật khẩu</span>
+              <span *ngIf="validation.isPassword?.errors?.['minlength']">Mật khẩu có ít nhất 8 ký tự</span>
+              <span *ngIf="validation.isPassword?.errors?.['maxlength']">Mật khẩu không vượt quá 25 kí tự</span>
+            </div>
+          </div>
+
+
+          <div class="input-margin">
+            <label class="form-label">Xác nhận lại mật khẩu</label>
+            <div class="d-flex">
+              <input class="form-control" autocomplete="new-password" [type]="typeRePassword"
+                placeholder="Xác nhận lại mật khẩu" formControlName="rePassword"
+                [ngClass]="validation.isRePasswordValid ? 'is-valid': (validation.isRePasswordInvalid? 'is-invalid' : '')">
+                <button type="button" class="d-flex"
+                style="align-items: center;padding: 0;border: none; background-color: transparent;"
+                [ngClass]="validation.isRePasswordValid || validation.isRePasswordInvalid ? 'ml--50' : 'ml--30'"
+                (click)="changeTypePassword(this.typeRePassword, false)">
+                <i style="cursor: pointer;width: 16px;height: 16px;"
+                  [ngClass]="typeRePassword != 'password'? 'ai-eye-slashed': 'ai-eye-open'"></i>
+              </button>
+            </div>
+            <div class="invalid-feedback" [style.display]="validation.isRePasswordInvalid ? 'block': 'none'">
+              <span *ngIf="validation.isRePassword?.errors?.['required']">Vui lòng xác nhận mật khẩu</span>
+              <span *ngIf="!validation.isRePassword?.errors?.['required']">Không trùng khớp với mất khẩu</span>
+            </div>
+          </div>
+
+
+          <button type="submit" class="button-submit form-control" [disabled]="validation.submitInvalid">Đăng
+            ký</button>
+        </ng-container>
+      </form>
+    </div>
+  </div>
+</div>

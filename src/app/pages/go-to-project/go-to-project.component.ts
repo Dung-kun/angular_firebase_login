@@ -27,16 +27,15 @@ export class GoToProjectComponent implements OnInit, OnDestroy {
     const onInit$ = combineLatest([this.appRouteParams()]).pipe(
       switchMap(([params]) => {
         if (!!params["id"] && !!params["taskId"]) {
-          console.log(params["id"], "cccccccccaaaaaaa");
-          console.log(params["taskId"], "vcl luon");
-        } else console.log("vlol luon");
+          return this.appAddListMember(params["id"], params["taskId"]);
+        }
         return of(params);
       })
     );
 
     this.sub = onInit$.subscribe((value) => {
-      console.log("value", value);
-      this.success.next("success");
+      if(!!value) this.success.next("success");
+      else this.success.next("fail");
     });
   }
 
