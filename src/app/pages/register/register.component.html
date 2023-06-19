@@ -31,7 +31,7 @@
 
           <div class="input-margin">
             <label class="form-label">Tên hiển thị</label>
-            <input class="form-control" type="text" placeholder="Địa chỉ Email" formControlName="displayName"
+            <input class="form-control" type="text" placeholder="Tên hiển thị" formControlName="displayName"
               [ngClass]="validation.isDisplayNameValid ? 'is-valid': (validation.isDisplayNameInvalid? 'is-invalid' : '')">
             <div class="invalid-feedback" [style.display]="validation.isDisplayNameInvalid ? 'block': 'none'">
               <span *ngIf="validation.isDisplayName?.errors?.['required']">Vui lòng nhập tên hiển thị của bạn</span>
