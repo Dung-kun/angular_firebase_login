@@ -106,3 +106,15 @@ input::-ms-reveal, input::-ms-clear { display: none; }
       padding: 0;
     }
   }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    background-position: center;
+    max-height: 300px;
+    max-width: 300px;
+}
