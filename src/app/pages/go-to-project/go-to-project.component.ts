@@ -32,7 +32,7 @@ export class GoToProjectComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const onInit$ = combineLatest([this.appRouteParams()]).pipe(
       switchMap((params: any) => {
-        if (!!params["id"] && !!params["taskId"]) {
+        if (!!params["id"] && !!params["projectId"]) {
           return this.appAddListMember(params["id"], params["taskId"]);
         }
 

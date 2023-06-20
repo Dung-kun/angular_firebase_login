@@ -16,7 +16,7 @@ import { RouterModule } from "@angular/router";
           component: GoToProjectComponent,
         },
         {
-            path: ':id/:taskId',
+            path: ':id/:projectId',
             component: GoToProjectComponent,
         }
       ]),

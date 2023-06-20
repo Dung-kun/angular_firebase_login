@@ -15,6 +15,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         path: '',
         component: RegisterComponent,
       },
+      {
+        path: ':projectId',
+        component: RegisterComponent,
+      },
     ]),
   ],
   exports: [RegisterComponent],
