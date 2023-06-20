@@ -17,32 +17,36 @@ import {
 })
 export class GoToProjectComponent implements OnInit, OnDestroy {
   public success: BehaviorSubject<string>;
-  public sub: Subscription | undefined;
+  public updateDoc: BehaviorSubject<string>;
+  public sub: any;
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly fstore: Firestore
   ) {
     this.success = new BehaviorSubject<string>('');
+    this.updateDoc = new BehaviorSubject<string>('');
   }
   ngOnDestroy(): void {
-    this.sub?.unsubscribe();
+    this.sub.unsubscribe();
   }
 
   ngOnInit(): void {
     const onInit$ = combineLatest([this.appRouteParams()]).pipe(
-      switchMap((params: any) => {
+      switchMap(([params]: any) => {
         if (!!params["id"] && !!params["projectId"]) {
-          return this.appAddListMember(params["id"], params["taskId"]);
+          // this.updateDoc.next(params["id"]);
+          return this.appAddListMember(params["id"], params["projectId"]);
         }
-
-        return of("");
+        return of("vl");
       })
     );
 
     this.sub = onInit$.subscribe((value) => {
-      if (!!value) this.success.next('success');
-      else this.success.next('fail');
+      // console.log(value);
+      if (value != "vl" && value != "already") this.success.next('success');
+      else if(value == "vl") this.success.next('fail');
+      else this.success.next('already');
     });
   }
 
@@ -54,14 +58,20 @@ export class GoToProjectComponent implements OnInit, OnDestroy {
     return getDoc(doc(this.fstore, 'project', idProject)).then((res) => {
       let temp = res.get('list_member');
       let arr_member: string[] = [];
-      if (typeof temp == 'string') {
-        arr_member = [temp, idUser];
-      } else if (!!temp) arr_member = [...temp, idUser];
-      else arr_member = [idUser];
+      if (!!temp){
+        let index = temp.findIndex((idx: string) => idx == idUser);
+        if(index  == -1) arr_member = [...temp, idUser];
+        else return "already";
+      } else arr_member = [idUser];
       updateDoc(doc(this.fstore, 'project', idProject), {
         list_member: arr_member,
-      });
+      }).catch(e => {
+        return "vl";
+      })
+
       return res;
+    }).catch(e => {
+      return "vl";
     });
   }
 }

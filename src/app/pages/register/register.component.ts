@@ -39,11 +39,11 @@ export class RegisterComponent implements OnInit {
     this.typeRePassword = 'password';
   }
   ngOnDestroy(): void {
-    this.sub?.unsubscribe();
+    this.sub.unsubscribe();
   }
   ngOnInit(): void {
     const onInit$ = combineLatest([this.appRouteParams()]).pipe(
-      map((params: Params) => {
+      map(([params]: any) => {
         if (params['projectId'] != '') {
           let temp: string = params['projectId'] || '';
           return temp;
@@ -90,7 +90,6 @@ export class RegisterComponent implements OnInit {
             alert('Email này đã được đăng ký, vui lòng nhập Email khác');
           }
         });
-      console.log(this.auth.currentUser);
     }
   }
 
@@ -99,16 +98,18 @@ export class RegisterComponent implements OnInit {
       setDoc(doc(this.fireStore, 'user', uid), {
         display_name: displayName,
         email: email,
-      }).then((res) => {
+      }).then((_) => {
         if (this.projectId.getValue() != '') {
           const projectIdentify = this.projectId.getValue();
           getDoc(doc(this.fireStore, 'project', projectIdentify)).then(
-            (res) => {
-              let temp = res.get('list_member');
-              let arr_member: string[] = [];
-              if (typeof temp == 'string') {
-                arr_member = [temp, uid];
-              } else if (!!temp) arr_member = [...temp, uid];
+            (res2) => {
+              let temp = res2.get('list_member');
+              let arr_member = [];
+              if (!!temp){
+                let index = temp.findIndex((idx: string) => idx == uid);
+                if(index  == -1) arr_member = [...temp, uid];
+                else return;
+              }
               else arr_member = [uid];
               updateDoc(doc(this.fireStore, 'project', projectIdentify), {
                 list_member: arr_member,
@@ -124,6 +125,8 @@ export class RegisterComponent implements OnInit {
                 });
             }
           );
+        } else {
+          this.status.next(3);
         }
       });
     }

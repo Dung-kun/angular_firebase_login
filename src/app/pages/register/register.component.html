@@ -89,6 +89,13 @@
     </div>
   </div>
 </div>
+
+<ng-container *ngIf="(this.status | async) == 1">
+  <div class="container-two">
+      <img src="https://s3.scoopwhoop.com/anj/loading/594155876.gif" alt="">
+  </div>
+</ng-container>
+
 <ng-container *ngIf="(this.status | async) == 2">
   <div class="container-two">
       <h3>Bạn đã tham gia vào dự án thành công, vui lòng vào ứng dụng để tham gia dự án</h3>
