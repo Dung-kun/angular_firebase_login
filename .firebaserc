@@ -1,14 +1,14 @@
 {
   "targets": {
-    "prime-works-315315": {
+    "tm-may2023": {
       "hosting": {
         "angular_firebase_login": [
-          "prime-works-315315"
+          "tm-may2023"
         ]
       }
     }
   },
   "projects": {
-    "default": "prime-works-315315"
+    "default": "tm-may2023"
   }
 }

@@ -1,13 +1,13 @@
 export const environment = {
   firebase: {
-    projectId: 'prime-works-315315',
-    appId: '1:959576308880:web:f671e2a5c06e413e2e6c15',
-    storageBucket: 'prime-works-315315.appspot.com',
     locationId: 'us-central',
-    apiKey: 'AIzaSyC7QOlcO7MLFj1iJABQk3yOIwmDNhP0RQc',
-    authDomain: 'prime-works-315315.firebaseapp.com',
-    messagingSenderId: '959576308880',
-    measurementId: 'G-04YJZ1VLNH',
+    apiKey: "AIzaSyDyQMjXs0h_ctuhtExiur--mL7GZIyGJTI",
+    authDomain: "tm-may2023.firebaseapp.com",
+    projectId: "tm-may2023",
+    storageBucket: "tm-may2023.appspot.com",
+    messagingSenderId: "651047515303",
+    appId: "1:651047515303:web:a7d83a092ecc6f12cf5782",
+    measurementId: "G-364QRKJVNN"
   },
   production: true
 };
